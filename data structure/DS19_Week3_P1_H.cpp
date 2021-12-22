@@ -43,7 +43,6 @@ public:
 			int remove = (*head).data;
 			Node *a = (*head).next;
 			head = a;
-
 			return remove;
 		}
 	}
@@ -65,6 +64,25 @@ public:
 			return 0;
 		}
 	}
+	void showList() {
+		if (head == NULL) {
+			cout << -1<<endl;
+		}
+		else {
+			Node *n = head;
+			while ((*n).next!=NULL) {
+				cout << (*n).data << " ";
+				n = (*n).next;
+			}
+			cout << (*n).data << endl;
+		}
+	}
+	void addBack(int X) {
+		Node * t = new Node(X);
+		(*tail).next = t;
+		tail = t;
+	}
+
 };
 int main() {
 
