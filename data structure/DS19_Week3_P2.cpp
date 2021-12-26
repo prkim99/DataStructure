@@ -13,14 +13,18 @@ public:
 	}
 };
 
-class SLinkedList {
+class CLinkedList {
 public:
 	Node* head;
 	Node* tail;
 
-	SLinkedList() {
+	CLinkedList() {
 		head = NULL;
 		tail = NULL;
+	}
+	~CLinkedList()
+	{
+
 	}
 
 	void addFront(int X) { //ㄱㅏ장앞에 노드 삽입
@@ -36,19 +40,29 @@ public:
 		}
 		(*tail).next = head;
 	}
-	int removeFront() {
+	void removeFront() {
 		if (head == NULL) {
-			return -1;
 		}
 		else {
-			int remove = (*head).data;
-			Node *a = (*head).next;
-			head = a;
+			Node *a = head;
+			head = (*a).next;
 			(*tail).next = head;
-			return remove;
+			delete a;
 		}
 	}
-
+	void remove(int step) {
+		Node *a = head;
+		Node *b = a;
+		for(int i=0;i<step;i++){
+			b = a;
+			a = (*a).next;
+		}
+		(*b).next = (*a).next;
+		if ((*b).next== head) {
+			tail = b;
+		}
+		delete a;
+	}
 	int front() {
 		if (head == NULL) {
 			return -1;
@@ -72,7 +86,7 @@ public:
 		}
 		else {
 			Node *n = head;
-			while ((*n).next!=NULL) {
+			while ((*n).next!=head) {
 				cout << (*n).data << " ";
 				n = (*n).next;
 			}
@@ -89,33 +103,32 @@ public:
 };
 int main() {
 
-	int M, X;
+	int M, X,v;
 	string input;
-	SLinkedList a;
 	cin >> M;
 	int count = 0;
 	while (count < M) {
-		cin >> input;
-		if (input == "empty") {
-			cout << a.empty() << endl;
+		CLinkedList a;
+		cin >> v;
+		a.addFront(v);
+		for (int i = 0; i < 9; i++) {
+			cin >> v;
+			a.addBack(v);
 		}
-		else if (input == "front") {
-			cout << a.front() << endl;
+		for (int j = 0; j < 3; j++) {
+			cin >> input>>X;
+			X = X % (10-j);
+			if (input == "Delete") {
+				if (X == 0) {
+					a.removeFront();
+				}
+				else {
+					a.remove(X );
+				}
+			}
 		}
-		else if (input == "addFront") {
-			cin >> X;
-			a.addFront(X);
-		}
-		else if (input == "removeFront") {
-			cout << a.removeFront() << endl;
-		}
-		else if (input == "addBack") {
-			cin >> X;
-			a.addBack(X);
-		}
-		else if (input == "showList") {
-			a.showList();
-		}
+		a.showList();
+		a.~CLinkedList();
 		count++;
 	}
 	return 0;

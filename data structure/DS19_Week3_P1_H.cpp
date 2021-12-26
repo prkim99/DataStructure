@@ -41,8 +41,9 @@ public:
 		}
 		else {
 			int remove = (*head).data;
-			Node *a = (*head).next;
-			head = a;
+			Node *a = head;
+			head = (*a).next;
+			delete a;
 			return remove;
 		}
 	}

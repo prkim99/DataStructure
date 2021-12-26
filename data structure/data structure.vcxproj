@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DS19_Week4_P1_E.cpp" />
+    <ClCompile Include="DS19_Week4_P2_LS.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E336B5FD-E724-4C79-8228-62A05AE07DA8}</ProjectGuid>
