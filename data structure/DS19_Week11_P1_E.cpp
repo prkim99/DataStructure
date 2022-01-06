@@ -45,12 +45,12 @@ public:
 	}
 	void printDepth() {
 		Node *tmp = this;
-		int degree = 0;
+		int depth = 0;
 		while (tmp->parent != NULL) {
 			tmp = tmp->parent;
-			degree++;
+			depth++;
 		}
-		cout << degree;
+		cout << depth;
 	}
 };
 class BST {

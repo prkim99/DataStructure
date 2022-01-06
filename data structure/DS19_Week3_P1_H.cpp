@@ -85,6 +85,7 @@ public:
 	}
 
 };
+
 int main() {
 
 	int M, X;

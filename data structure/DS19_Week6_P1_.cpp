@@ -37,13 +37,35 @@ public:
 			Q[r] = data;
 		}
 	}
+	void dequeue() {
+		if (isEmpty() == 1) {
+			cout << "Empty" << endl;
+		}
+		else {
+			int temp = Q[f];
+			this->f = (f + 1) % capacity;
+			cout << temp << endl;
+		}
+	}
 	bool isfull() {
-		if (size()==capacity-1) {
+		if (size()==(capacity-1)) {
 			return 1;
 		}
 		else {
 			return 0;
 		}
+	}
+	int front() {
+		if (isEmpty() == 1) {
+			return 0;
+		}
+		return Q[f];
+	}
+	int rear() {
+		if (isEmpty() == 1) {
+			return 0;
+		}
+		return Q[r];
 	}
 };
 int main() {
@@ -63,6 +85,21 @@ int main() {
 		}
 		else if (cmd == "size") {
 			cout << a.size() << endl;
+		}
+		if (cmd == "dequeue") {
+			a.dequeue();
+		}
+		else if (cmd == "front") {
+			if (a.front() == 0) 
+				cout << "Empty" << endl;
+			else
+				cout << a.front() << endl;
+		}
+		else if (cmd == "rear") {
+			if (a.rear() == 0)
+				cout << "Empty" << endl;
+			else
+				cout << a.rear() << endl;
 		}
 		count++;
 	}
